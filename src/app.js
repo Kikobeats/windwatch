@@ -74,7 +74,7 @@ var renderError = function(err) {
 // Contruct the request
 var checkWind = function() {
   ajax({
-      url: 'http://windtodayapi.sailorjs.org/spots/ribera',
+      url: 'http://windtodayapi.sailorjs.org/webcams/ribera',
       type: 'json'
     },
     function(res) {
