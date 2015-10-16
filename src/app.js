@@ -67,13 +67,20 @@ main.add(windDir);
 // Display the Card
 main.show();
 
+var renderError = function(err) {
+  windDesc.text('Connection error');
+};
+
 // Contruct the request
 var checkWind = function() {
   ajax({
       url: 'http://windtodayapi.sailorjs.org/spots/ribera',
       type: 'json'
     },
-    function(data) {
+    function(res) {
+      if (!res.success) return renderError();
+      var data = res.data;
+
       // Extract data
       var time = data.time;
       var date = data.date;
@@ -100,11 +107,7 @@ var checkWind = function() {
       windDir.text(direction);
     },
 
-    function(error) {
-      // Failure!
-      windDesc.text('Connection error');
-    }
-
+    renderError
   );
 };
 
