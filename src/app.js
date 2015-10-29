@@ -80,12 +80,16 @@ var checkWind = function() {
     function(res) {
       if (!res.success) return renderError();
       var data = res.data;
+			
+			console.log(data);
 
       // Extract data
       var time = data.time;
       var date = data.date;
-      var wind = data.wind;
-      var gusts = data.gusts;
+      var wind = Math.round(data.wind);
+			var gusts = data.gusts ? Math.round(data.gusts) : wind + 1;
+			
+			//var gusts = data.gusts ? Math.round(data.gusts): (wind + 1);
       var temp = data.temperature;
       var direction = data.direction;
 
